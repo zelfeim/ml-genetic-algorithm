@@ -2,9 +2,18 @@ namespace GeneticAlgorithm;
 
 public class Individual
 {
-    private List<byte[]> _chromosomes = [];
+    public Individual(Individual other)
+    {
+        Genotype = other.Genotype;
+    }
+
+    public Individual(byte[] genotype)
+    {
+        Genotype = genotype;
+    }
+    
+    // TODO: Should be list of objects containing bytes?
+    public byte[] Genotype {get; init;}
 
     public double Fitness { get; private set; }
-
-
 }

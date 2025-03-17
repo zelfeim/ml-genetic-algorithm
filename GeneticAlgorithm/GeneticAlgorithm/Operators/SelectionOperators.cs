@@ -1,4 +1,4 @@
-namespace GeneticAlgorithm;
+namespace GeneticAlgorithm.Operators;
 
 public static class SelectionOperator
 {
