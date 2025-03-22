@@ -1,52 +1,60 @@
-using System.Collections.Immutable;
 
 namespace GeneticAlgorithm.Model;
 
 public class Model
 {
-    public static float ParameterMinValue = -1;
-    public static float ParameterMaxValue = 2;
+    private static int _parameterMinValue;
+    private static int _parameterMaxValue;
 
-    public static float ParameterValueRange;
+    private static int _parameterValueRange;
 
-    public static int ChromosomesPerParameter = 3;
+    private static int _chromosomesPerParameter;
 
-    public Model(float parameterMinValue, float parameterMaxValue, int chromosomesPerParameter)
+    public Model(int parameterMinValue, int parameterMaxValue, int chromosomesPerParameter)
     {
-        ParameterMinValue = parameterMinValue;
-        ParameterMaxValue = parameterMaxValue;
-        ChromosomesPerParameter = chromosomesPerParameter;
-        ParameterValueRange = ParameterMaxValue - ParameterMinValue;
+        _parameterMinValue = parameterMinValue;
+        _parameterMaxValue = parameterMaxValue;
+        _chromosomesPerParameter = chromosomesPerParameter;
+        _parameterValueRange = _parameterMaxValue - _parameterMinValue;
     }
-        
-    public ImmutableArray<Parameter> Parameters { get; private set; }
-    
-    // TODO: in static method?
-    public List<byte> EncodeParameter(float parameter)
+
+    // TODO: To decimal?
+    public List<double> Parameters { get; set; } = [];
+
+    public List<byte> EncodeParameter(double parameter)
     {
-        var bytes = new List<byte>();
-        
-        var zd = ParameterMaxValue - ParameterMinValue;
-        
-        var ctmp = Math.Round((parameter - ParameterMinValue) / zd * (Math.Pow(2, ChromosomesPerParameter) - 1));
-        
-        for (int i = 0; i < ChromosomesPerParameter - 1; i++)
+        var bytes = new List<byte>(_chromosomesPerParameter);
+
+        parameter = Math.Max(parameter, _parameterMinValue);
+        parameter = Math.Min(parameter, _parameterMaxValue);
+
+        var ctmp = Math.Round((parameter - _parameterMinValue) / _parameterValueRange *
+                              (Math.Pow(2, _chromosomesPerParameter) - 1));
+
+        for (var i = 0; i < _chromosomesPerParameter; i++)
         {
-            var byteValue = Math.Floor(ctmp/Math.Pow(2, i)) % 2;
+            var value = Math.Floor(ctmp / Math.Pow(2, i) % 2);
+            var byteValue = Convert.ToByte(value);
+            bytes.Add(byteValue);
         }
-        
-        return [];
+
+        // Reverse bytes because now the smallest byte is at the beginning
+        bytes.Reverse();
+
+        return bytes;
     }
 
-    public static double DecodeChromosomes(List<byte> chromosomes)
+    public decimal DecodeChromosomes(List<byte> chromosomes)
     {
-        var ctmp = 0d;
+        var ctmp = 0.0;
 
-        for (var i = 0; i < ChromosomesPerParameter; i++)
-        {   
+        for (var i = 0; i < _chromosomesPerParameter; i++)
+        {
             ctmp += chromosomes[^(i + 1)] * Math.Pow(2, i);
         }
 
-        return Math.Round(ParameterMinValue + ctmp / (Math.Pow(2, ChromosomesPerParameter) - 1) * ParameterValueRange, 2);
+        var calculatedValue =
+            _parameterMinValue + ctmp / (Math.Pow(2, _chromosomesPerParameter) - 1) * _parameterValueRange;
+        return (decimal)Math.Round(calculatedValue, 2, MidpointRounding.ToZero);
     }
 }
