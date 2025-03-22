@@ -4,16 +4,23 @@ public class Individual
 {
     public Individual(Individual other)
     {
-        Genotype = other.Genotype;
+        Chromosomes = other.Chromosomes;
     }
 
-    public Individual(byte[] genotype)
+    public Individual(List<Chromosome> chromosomes)
     {
-        Genotype = genotype;
+        Chromosomes = chromosomes;
+    }
+
+    public Individual(List<byte> genotype)
+    {
+        // TODO: Get ChromosomesPerParameter from config
+        Chromosomes = genotype.Chunk(3).Select(b => new Chromosome(b)).ToList();
     }
     
-    // TODO: Should be list of objects containing bytes?
-    public byte[] Genotype {get; init;}
+    public List<Chromosome> Chromosomes {get; set;}
+
+    public List<byte> Genotype => Chromosomes.SelectMany(c => c.Value).ToList<byte>();
 
     public double Fitness { get; private set; }
 }

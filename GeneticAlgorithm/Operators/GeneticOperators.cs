@@ -12,9 +12,9 @@ public static class GeneticOperators
         var byteCutoff = random.Next(individualByteSize - 2);
 
         var firstChildBytes = firstParentBytes[.. byteCutoff]
-            .Concat(secondParentBytes[byteCutoff..(individualByteSize - 1)]).ToArray();
+            .Concat(secondParentBytes[byteCutoff..(individualByteSize - 1)]).ToList();
         var secondChildBytes = secondParentBytes[.. byteCutoff]
-            .Concat(firstParentBytes[byteCutoff..(individualByteSize - 1)]).ToArray();
+            .Concat(firstParentBytes[byteCutoff..(individualByteSize - 1)]).ToList();
 
         var children = new List<Individual>
         {
@@ -29,10 +29,11 @@ public static class GeneticOperators
     {
         var random = new Random();
 
-        var index = random.Next(individualByteSize - 1);
+        var chromosomeIndex = random.Next(individual.Chromosomes.Count - 1);
+        var byteIndex = random.Next(individualByteSize - 1);
 
         var child = new Individual(individual);
-        child.Genotype[index] ^= 1;
+        child.Chromosomes[chromosomeIndex].Value[byteIndex] ^= 1;
 
         return child;
     }
