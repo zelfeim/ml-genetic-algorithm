@@ -33,7 +33,7 @@ public class ModelTest
         var model = TestModel;
 
         // Act
-        var chromosomes = model.EncodeParameter(parameterValue);
+        var chromosomes = GeneticAlgorithm.Model.Model.EncodeParameter(parameterValue);
 
         // Assert
         chromosomes.Should().BeEquivalentTo(expectedBytes);
@@ -47,7 +47,7 @@ public class ModelTest
         var model = TestModel;
 
         // Act
-        var parameter = model.DecodeChromosomes(bytes);
+        var parameter = GeneticAlgorithm.Model.Model.DecodeChromosomes(bytes);
 
         // Assert
         parameter.Should().Be(expectedParameterValue);

@@ -1,4 +1,3 @@
-
 namespace GeneticAlgorithm.Model;
 
 public class Model
@@ -21,7 +20,8 @@ public class Model
     // TODO: To decimal?
     public List<double> Parameters { get; set; } = [];
 
-    public List<byte> EncodeParameter(double parameter)
+    // TODO Create single lookup dictionary to not encode/decode at runtime
+    public static List<byte> EncodeParameter(double parameter)
     {
         var bytes = new List<byte>(_chromosomesPerParameter);
 
@@ -44,7 +44,7 @@ public class Model
         return bytes;
     }
 
-    public decimal DecodeChromosomes(List<byte> chromosomes)
+    public static decimal DecodeChromosomes(List<byte> chromosomes)
     {
         var ctmp = 0.0;
 

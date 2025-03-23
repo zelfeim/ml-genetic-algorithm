@@ -18,6 +18,8 @@ public class Individual
         Chromosomes = genotype.Chunk(3).Select(b => new Chromosome(b)).ToList();
     }
     
+    // Every parameter can have different lengths of chromosomes
+    // Chromosome represents 1 value (byte)
     public List<Chromosome> Chromosomes {get; set;}
 
     public List<byte> Genotype => Chromosomes.SelectMany(c => c.Value).ToList<byte>();
