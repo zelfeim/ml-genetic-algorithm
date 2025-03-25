@@ -2,23 +2,26 @@ namespace GeneticAlgorithm.Operators;
 
 public static class SelectionOperator
 {
-    public static Individual TournamentSelection(List<Individual> population, int tournamentSize, int loopCount = 1)
+    public static List<Individual> TournamentSelection(List<Individual> individuals, int tournamentSize, int iterations = 1)
     {
+        var selectedIndividuals = new List<Individual>();
+        
         var random = new Random();  
+        for (var i = 0; i < iterations; i++)
+        {
+            var winners = random.GetItems(individuals.ToArray(), tournamentSize); 
+            selectedIndividuals.Add(winners.GetBestIndividual());
+        }
         
-        var chosenIndividuals = random.GetItems(population.ToArray(), tournamentSize);
-
-        var individual = chosenIndividuals.ToList().GetBestIndividual();
-        
-        return individual;
+        return selectedIndividuals.ToList();
     }
 
     public static Individual HotDeckSelection(List<Individual> population)
     {
-        return population.GetBestIndividual();
+        return population.ToArray().GetBestIndividual();
     }
 
-    private static Individual GetBestIndividual(this List<Individual> population)
+    private static Individual GetBestIndividual(this Individual[] population)
     {
         return population.Aggregate((agg, next) => next.Fitness > agg.Fitness ? next : agg);    
     }
