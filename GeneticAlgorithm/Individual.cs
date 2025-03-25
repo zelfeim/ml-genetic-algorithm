@@ -1,28 +1,30 @@
+using System.Collections;
+
 namespace GeneticAlgorithm;
 
 public class Individual
 {
     public Individual(Individual other)
     {
-        Chromosomes = other.Chromosomes;
+        Genotype = other.Genotype;
     }
 
-    public Individual(List<Chromosome> chromosomes)
+    public Individual(BitArray genotype)
     {
-        Chromosomes = chromosomes;
+        Genotype = genotype;
     }
 
-    public Individual(List<byte> genotype)
+    public Individual(bool[] genotype)
     {
-        // TODO: Get ChromosomesPerParameter from config
-        Chromosomes = genotype.Chunk(3).Select(b => new Chromosome(b)).ToList();
+        Genotype = new BitArray(genotype);
     }
-    
-    // Every parameter can have different lengths of chromosomes
-    // Chromosome represents 1 value (byte)
-    public List<Chromosome> Chromosomes {get; set;}
 
-    public List<byte> Genotype => Chromosomes.SelectMany(c => c.Value).ToList<byte>();
+    public BitArray Genotype { get; init; }
 
-    public double Fitness { get; private set; }
+    public double Fitness { get; set; }
+
+    public void FlipBit(int index)
+    {
+        Genotype[index] ^= true;
+    }
 }
