@@ -6,7 +6,7 @@ public class Individual
 {
     public Individual(Individual other)
     {
-        Genotype = other.Genotype;
+        Genotype = other.Genotype.ToList();
     }
 
     public Individual(IEnumerable<byte> genotype)

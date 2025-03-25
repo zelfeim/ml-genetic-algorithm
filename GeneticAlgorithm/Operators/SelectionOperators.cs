@@ -9,8 +9,10 @@ public static class SelectionOperator
         var random = new Random();  
         for (var i = 0; i < iterations; i++)
         {
-            var winners = random.GetItems(individuals.ToArray(), tournamentSize); 
-            selectedIndividuals.Add(winners.GetBestIndividual());
+            var chosenIndividuals = random.GetItems(individuals.ToArray(), tournamentSize);
+            var winner = chosenIndividuals.GetBestIndividual();
+            
+            selectedIndividuals.Add(new Individual(winner));
         }
         
         return selectedIndividuals.ToList();
