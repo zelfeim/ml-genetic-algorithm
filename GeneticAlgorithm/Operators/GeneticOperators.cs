@@ -12,14 +12,14 @@ public static class GeneticOperators
 
         var genotypeSize = firstParent.Genotype.Count;
 
-        var firstParentBits = firstParent.Genotype.Cast<bool>().ToArray();
-        var secondParentBits = secondParent.Genotype.Cast<bool>().ToArray();
+        var firstParentBits = firstParent.Genotype;
+        var secondParentBits = secondParent.Genotype;
 
         var random = new Random();
         var byteCutoff = cutoff != 0 ? cutoff : random.Next(genotypeSize);
 
-        var firstChildBits = firstParentBits[.. byteCutoff].Concat(secondParentBits[byteCutoff..genotypeSize]).ToArray();
-        var secondChildBits = secondParentBits[.. byteCutoff].Concat(firstParentBits[byteCutoff..genotypeSize]).ToArray();
+        var firstChildBits = firstParentBits[.. byteCutoff].Concat(secondParentBits[byteCutoff..genotypeSize]);
+        var secondChildBits = secondParentBits[.. byteCutoff].Concat(firstParentBits[byteCutoff..genotypeSize]);
 
         var children = new List<Individual>
         {

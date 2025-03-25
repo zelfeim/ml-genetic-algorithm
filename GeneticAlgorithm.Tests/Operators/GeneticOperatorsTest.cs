@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using FluentAssertions;
 using GeneticAlgorithm.Operators;
 using Xunit;
@@ -11,11 +12,11 @@ public class GeneticOperatorsTest
     public void Crossover_Should_Return_Expected_Genotypes()
     {
         // Arrange
-        var firstParent = new Individual([true, false, true, false, true, true]);
-        var secondParent = new Individual([false, false, true, true, false, false]);
+        var firstParent = new Individual([1, 0, 1, 0, 1, 1]);
+        var secondParent = new Individual([0, 0, 1, 1, 0, 0]);
 
-        var expectedFirstChildBytes = new BitArray([true, false, true, false, false, false ]);
-        var expectedSecondChildBytes = new BitArray([ false, false, true, true, true, true ]);
+        var expectedFirstChildBytes = new List<byte>([1, 0, 1, 0, 0, 0 ]);
+        var expectedSecondChildBytes = new List<byte>([ 0, 0, 1, 1, 1, 1 ]);
 
         // Act
         var children = GeneticOperators.Crossover(firstParent, secondParent, 4);
@@ -29,8 +30,8 @@ public class GeneticOperatorsTest
     public void Mutate_Should_Flip_Individual_Bit()
     {
        // Arrange 
-       var individual = new Individual([true]);
-       var expectedGenotype = new BitArray([false]);
+       var individual = new Individual([1]);
+       var expectedGenotype = new List<byte>([0]);
        
        // Act
        GeneticOperators.Mutate(individual);

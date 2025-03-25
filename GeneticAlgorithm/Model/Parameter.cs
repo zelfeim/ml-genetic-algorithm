@@ -8,7 +8,9 @@ public class Parameter
     public readonly int MaxValue;
     public readonly int MinValue;
 
-    public readonly Dictionary<BitArray, double> ParameterRepresentation;
+    public Dictionary<List<byte>, double> ParameterRepresentation { get; }
+    
+    public double Value { get; set; }
 
     public Parameter(int minValue, int maxValue, int chromosomesCount)
     {
@@ -21,25 +23,26 @@ public class Parameter
 
     public int ValueRange => MaxValue - MinValue;
 
-    private Dictionary<BitArray, double> CreateParameterRepresentation()
+    private Dictionary<List<byte>, double> CreateParameterRepresentation()
     {
-        var representation = new Dictionary<BitArray, double>();
+        var representation = new Dictionary<List<byte>, double>();
 
         var chromosomeCombinations = Math.Pow(2, ChromosomesCount);
 
         for (var i = 0; i < chromosomeCombinations; i++)
         {
             var ctmp = 0.0d;
-            var bitArray = new BitArray([i]);
+
+            var bits = Enumerable.Range(0, ChromosomesCount).Select(b => (byte)((i >> b) & 1)).ToList();
 
             for (var j = 0; j < ChromosomesCount; j++)
             {
-                ctmp += Convert.ToInt32(bitArray[j]) * Math.Pow(2, j);
+                ctmp += Convert.ToInt32(bits[j]) * Math.Pow(2, j);
             }
             
             var value = MinValue + ctmp / (Math.Pow(2, ChromosomesCount) - 1) * ValueRange;
 
-            representation.Add(bitArray, value);
+            representation.Add(bits, value);
         }
 
         return representation;

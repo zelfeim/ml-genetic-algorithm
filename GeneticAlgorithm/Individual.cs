@@ -9,22 +9,17 @@ public class Individual
         Genotype = other.Genotype;
     }
 
-    public Individual(BitArray genotype)
+    public Individual(IEnumerable<byte> genotype)
     {
-        Genotype = genotype;
+        Genotype = genotype.ToList();
     }
 
-    public Individual(bool[] genotype)
-    {
-        Genotype = new BitArray(genotype);
-    }
-
-    public BitArray Genotype { get; init; }
+    public List<byte> Genotype { get; init; }
 
     public double Fitness { get; set; }
 
     public void FlipBit(int index)
     {
-        Genotype[index] ^= true;
+        Genotype[index] ^= 1;
     }
 }
