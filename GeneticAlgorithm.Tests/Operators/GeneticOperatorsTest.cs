@@ -6,20 +6,20 @@ using Xunit;
 
 namespace GeneticAlgorithm.Tests.Operators;
 
-public class GeneticOperatorsTest
+public class MutationTest
 {
     [Fact]
     public void Crossover_Should_Return_Expected_Genotypes()
     {
         // Arrange
-        var firstParent = new Individual([1, 0, 1, 0, 1, 1]);
-        var secondParent = new Individual([0, 0, 1, 1, 0, 0]);
+        var firstParent = new Individual.Individual([1, 0, 1, 0, 1, 1]);
+        var secondParent = new Individual.Individual([0, 0, 1, 1, 0, 0]);
 
         var expectedFirstChildBytes = new List<byte>([1, 0, 1, 0, 0, 0 ]);
         var expectedSecondChildBytes = new List<byte>([ 0, 0, 1, 1, 1, 1 ]);
 
         // Act
-        var children = GeneticOperators.Crossover(firstParent, secondParent, 4);
+        var children = Mutation.Crossover(firstParent, secondParent, 4);
 
         // Assert
         children[0].Genotype.Should().BeEquivalentTo(expectedFirstChildBytes);
@@ -30,11 +30,11 @@ public class GeneticOperatorsTest
     public void Mutate_Should_Flip_Individual_Bit()
     {
        // Arrange 
-       var individual = new Individual([1]);
+       var individual = new Individual.Individual([1]);
        var expectedGenotype = new List<byte>([0]);
        
        // Act
-       GeneticOperators.Mutate(individual);
+       Mutation.FlipBit(individual);
 
        // Assert
        individual.Genotype.Should().BeEquivalentTo(expectedGenotype);

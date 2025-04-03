@@ -1,11 +1,12 @@
-using System.Collections;
-
-namespace GeneticAlgorithm;
+namespace GeneticAlgorithm.Individual;
 
 public class Individual
 {
+    public double Fitness;
+    
     public Individual(Individual other)
     {
+        Fitness = other.Fitness;
         Genotype = other.Genotype.ToList();
     }
 
@@ -15,8 +16,6 @@ public class Individual
     }
 
     public List<byte> Genotype { get; init; }
-
-    public double Fitness { get; set; }
 
     public void FlipBit(int index)
     {

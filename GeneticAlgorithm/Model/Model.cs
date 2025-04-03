@@ -4,13 +4,15 @@ namespace GeneticAlgorithm.Model;
 
 public class Model
 {
+    private Func<Individual.Individual, float> _fitnessFunction;
+    
     public Model()
     {
     }
 
     public List<Parameter> Parameters { get; set; }
 
-    public List<double> DecodeGenotype(Individual individual)
+    public List<double> DecodeGenotype(Individual.Individual individual)
     {
         var values = new List<double>();
 

@@ -1,52 +1,38 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using System.ComponentModel.Design;
-using GeneticAlgorithm;
-using GeneticAlgorithm.Model;
+﻿using GeneticAlgorithm.Fitness;
+using GeneticAlgorithm.Individual;
 using GeneticAlgorithm.Operators;
+using GeneticAlgorithm.Populations;
+using GeneticAlgorithm.Selections;
 
 const int minParameterValue = 0;
 const int maxParameterValue = 100;
-const int chromosomeCount = 16;
-const int iterations = 50;
-const int individualCount = 17;
+const int chromosomeCount = 10;
+const int iterations = 500;
+const int individualCount = 9;
 const int tournamentSize = 2;
 const int parameterCount = 2;
 
-var model = new Model();
+var population = new Population(individualCount, iterations, chromosomeCount, parameterCount, minParameterValue, maxParameterValue);
+var fitness = new FuncFitness(FitnessFunc);
+var selection = new TournamentSelection(tournamentSize, parameterCount, SelectBest);
+var mutationFunc = MutatePopulation;
+var hotDeckSelection = SelectBest;
 
-var parameters = new List<Parameter>()
-{
-    new(minParameterValue, maxParameterValue, chromosomeCount),
-    new(minParameterValue, maxParameterValue, chromosomeCount),
-};
+var geneticAlgorithm = new GeneticAlgorithm.GeneticAlgorithm(population, fitness, selection, hotDeckSelection, mutationFunc);
 
-model.Parameters = parameters;
-
-var individuals =
-    IndividualFactory.CreateRandomIndividuals(chromosomeCount * parameterCount, individualCount);
-
-CalculateIndividualsFitness(individuals);
-
-for (var i = 0; i < iterations; i++)
-{
-    Console.WriteLine($"Iteration {i + 1}/{iterations}");
-    var selectedIndividuals = SelectionOperator.TournamentSelection(individuals, tournamentSize, individuals.Count - 1);
-    selectedIndividuals.ForEach(GeneticOperators.Mutate);
-
-    selectedIndividuals.Add(SelectionOperator.HotDeckSelection(individuals));
-
-    CalculateIndividualsFitness(selectedIndividuals);
-
-    var bestFitness = selectedIndividuals.Select(i => i.Fitness).Max();
-    var averageFitness = selectedIndividuals.Select(i => i.Fitness).Average();
-    Console.WriteLine($"Best fitness: {bestFitness}");
-    Console.WriteLine($"Average fitness: {averageFitness}\n");
-
-    individuals = selectedIndividuals;
-}
+geneticAlgorithm.Execute();
 
 return 0;
+
+List<Individual> MutatePopulation(List<Individual> individuals)
+{
+    return individuals.Select(Mutation.FlipBit).ToList();
+}
+
+Individual SelectBest(List<Individual> individuals)
+{
+    return individuals.MaxBy(individual => individual.Fitness);
+}
 
 double FitnessFunc(List<double> arguments)
 {
@@ -56,11 +42,3 @@ double FitnessFunc(List<double> arguments)
      return Math.Sin(x1 * 0.05) + Math.Sin(x2 * 0.05) + 0.4 * Math.Sin(x1 * 0.15) * Math.Sin(x2 * 0.15);
 }
 
-void CalculateIndividualsFitness(List<Individual> individuals)
-{
-    foreach (var individual in individuals)
-    {
-        var arguments = model.DecodeGenotype(individual);
-        individual.Fitness = FitnessFunc(arguments);
-    }
-}
