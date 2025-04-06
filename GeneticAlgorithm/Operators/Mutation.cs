@@ -1,10 +1,7 @@
-using System.Collections;
-
 namespace GeneticAlgorithm.Operators;
 
 public static class Mutation
 {
-    // Can also implement with random values (for example exchange 1, 2, 6 byte) other than cutoff
     public static List<Individual.Individual> Crossover(Individual.Individual firstParent, Individual.Individual secondParent, int cutoff = 0)
     {
         if (firstParent.Genotype.Count != secondParent.Genotype.Count)

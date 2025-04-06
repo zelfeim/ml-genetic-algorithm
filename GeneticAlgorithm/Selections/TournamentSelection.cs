@@ -2,8 +2,6 @@ namespace GeneticAlgorithm.Selections;
 
 public class TournamentSelection(int tournamentSize, int roundCount, Func<List<Individual.Individual>, Individual.Individual> getBestIndividualFunc) : ISelection
 {
-    private Func<List<Individual.Individual>, Individual.Individual> _getBestIndividualFunc = getBestIndividualFunc;
-    
     public List<Individual.Individual> SelectIndividuals(List<Individual.Individual> individuals)
     {
         var selectedIndividuals = new List<Individual.Individual>();
@@ -14,7 +12,7 @@ public class TournamentSelection(int tournamentSize, int roundCount, Func<List<I
             var tournamentRoundIndividuals = random.GetItems(individuals.ToArray(), tournamentSize).ToList();
             var winner = GetBestIndividual(tournamentRoundIndividuals);
             
-            selectedIndividuals.Add(winner);
+            selectedIndividuals.Add(new Individual.Individual(winner));
         }
         
         return selectedIndividuals;
@@ -22,6 +20,6 @@ public class TournamentSelection(int tournamentSize, int roundCount, Func<List<I
 
     private Individual.Individual GetBestIndividual(List<Individual.Individual> individualsWithFitness)
     {
-        return _getBestIndividualFunc(individualsWithFitness);
+        return getBestIndividualFunc(individualsWithFitness);
     }
 }

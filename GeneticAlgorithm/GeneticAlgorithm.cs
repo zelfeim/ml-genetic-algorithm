@@ -8,13 +8,13 @@ public class GeneticAlgorithm(
     Population population,
     IFitness fitness,
     ISelection selection,
-    Func<List<Individual.Individual>, Individual.Individual> selectBestFunc,
     Func<List<Individual.Individual>, List<Individual.Individual>> mutatePopulationFunc
 )
 {
     public void Execute()
     {
         population.CreateInitialGeneration();
+        CalculateFitness(population.Individuals);
         
         Run();
     }
@@ -23,22 +23,17 @@ public class GeneticAlgorithm(
     {
         while (population.GenerationsCount > 0)
         {
-            CalculateFitness(population.Individuals);
-
-            // Create the copy of individuals
-            var newGeneration = selection.SelectIndividuals(population.Individuals).ToList();
+            var newGeneration = selection.SelectIndividuals(population.Individuals);
             
             newGeneration = mutatePopulationFunc(newGeneration);
 
-            var bestOldIndividual = new Individual.Individual(selectBestFunc(population.Individuals));
+            var bestOldIndividual = new Individual.Individual(population.GetBestIndividual());
             newGeneration.Add(bestOldIndividual);
             
-            CalculateFitness(population.Individuals); 
-            
-            WriteBestAndAverageFitness(newGeneration);
+            CalculateFitness(newGeneration); 
             
             population.CreateNewGeneration(newGeneration);
-            population.GenerationsCount--;
+            WriteBestAndAverageFitness();
         }
     }
 
@@ -67,10 +62,10 @@ public class GeneticAlgorithm(
         return values;
     }
 
-    private void WriteBestAndAverageFitness(List<Individual.Individual> individuals)
+    private void WriteBestAndAverageFitness()
     {
-        var best = selectBestFunc(individuals).Fitness;
-        var average = individuals.Average(individual => individual.Fitness);
+        var best = population.GetBestIndividual().Fitness;
+        var average = population.Individuals.Average(individual => individual.Fitness);
 
         Console.WriteLine($"Best fitness: {best}, Average fitness: {average}");
     }

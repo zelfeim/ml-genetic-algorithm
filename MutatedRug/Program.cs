@@ -6,19 +6,18 @@ using GeneticAlgorithm.Selections;
 
 const int minParameterValue = 0;
 const int maxParameterValue = 100;
-const int chromosomeCount = 10;
+const int chromosomeCount = 3;
 const int iterations = 500;
 const int individualCount = 9;
 const int tournamentSize = 2;
 const int parameterCount = 2;
 
-var population = new Population(individualCount, iterations, chromosomeCount, parameterCount, minParameterValue, maxParameterValue);
+var population = new Population(individualCount, iterations, chromosomeCount, parameterCount, minParameterValue, maxParameterValue, SelectBest);
 var fitness = new FuncFitness(FitnessFunc);
-var selection = new TournamentSelection(tournamentSize, parameterCount, SelectBest);
+var selection = new TournamentSelection(tournamentSize, individualCount - 1, SelectBest);
 var mutationFunc = MutatePopulation;
-var hotDeckSelection = SelectBest;
 
-var geneticAlgorithm = new GeneticAlgorithm.GeneticAlgorithm(population, fitness, selection, hotDeckSelection, mutationFunc);
+var geneticAlgorithm = new GeneticAlgorithm.GeneticAlgorithm(population, fitness, selection, mutationFunc);
 
 geneticAlgorithm.Execute();
 
@@ -41,4 +40,3 @@ double FitnessFunc(List<double> arguments)
      
      return Math.Sin(x1 * 0.05) + Math.Sin(x2 * 0.05) + 0.4 * Math.Sin(x1 * 0.15) * Math.Sin(x2 * 0.15);
 }
-

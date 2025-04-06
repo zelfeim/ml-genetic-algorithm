@@ -7,18 +7,18 @@ using ValueComparision;
 const int minValue = 0;
 const int maxValue = 3;
 const int geneCount = 3;
-const int chromosomeCount = 8;
+const int chromosomeCount = 12;
 const int iterations = 500;
 const int populationSize = 13;
 const int tournamentSize = 3;
 
 var values = ReadCsvFile();
 
-var population = new Population(populationSize, iterations, chromosomeCount, geneCount, minValue, maxValue);
+var population = new Population(populationSize, iterations, chromosomeCount, geneCount, minValue, maxValue, SelectBestIndividual);
 var fitness = new ComparisionFitness(ReadCsvFile());
 var selection = new TournamentSelection(tournamentSize, populationSize, SelectBestIndividual);
 
-var geneticAlgorithm = new GeneticAlgorithm.GeneticAlgorithm(population, fitness, selection, SelectBestIndividual, MutatePopulation);
+var geneticAlgorithm = new GeneticAlgorithm.GeneticAlgorithm(population, fitness, selection, MutatePopulation);
 
 geneticAlgorithm.Execute();
 
