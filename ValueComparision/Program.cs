@@ -7,7 +7,7 @@ using ValueComparision;
 const int minValue = 0;
 const int maxValue = 3;
 const int geneCount = 3;
-const int chromosomeCount = 12;
+const int chromosomeCount = 4;
 const int iterations = 500;
 const int populationSize = 13;
 const int tournamentSize = 3;
@@ -29,18 +29,18 @@ Individual SelectBestIndividual(List<Individual> individuals)
     return individuals.MinBy(i => i.Fitness);
 }
 
-Dictionary<decimal, float> ReadCsvFile()
+Dictionary<double, double> ReadCsvFile()
 {
     using var reader = new StreamReader(@"values.csv"); 
     
-    var valueDictionary = new Dictionary<decimal, float>();
+    var valueDictionary = new Dictionary<double, double>();
 
     while (!reader.EndOfStream)
     {
         var line = reader.ReadLine();
         var values = line.Split(',');
         
-        valueDictionary.Add(Convert.ToDecimal(values[0]), Convert.ToSingle(values[1]));
+        valueDictionary.Add(Convert.ToDouble(values[0]), Convert.ToDouble(values[1]));
     }
     
     return valueDictionary;
