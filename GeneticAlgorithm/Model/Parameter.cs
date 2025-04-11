@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace GeneticAlgorithm.Model;
 
 public class Parameter
@@ -7,10 +5,6 @@ public class Parameter
     public readonly int ChromosomesCount;
     public readonly int MaxValue;
     public readonly int MinValue;
-
-    public Dictionary<List<byte>, double> ParameterRepresentation { get; }
-    
-    public double Value { get; set; }
 
     public Parameter(int minValue, int maxValue, int chromosomesCount)
     {
@@ -20,6 +14,10 @@ public class Parameter
 
         ParameterRepresentation = CreateParameterRepresentation();
     }
+
+    public Dictionary<List<byte>, double> ParameterRepresentation { get; }
+
+    public double Value { get; set; }
 
     public int ValueRange => MaxValue - MinValue;
 
@@ -35,11 +33,8 @@ public class Parameter
 
             var bits = Enumerable.Range(0, ChromosomesCount).Select(b => (byte)((i >> b) & 1)).ToList();
 
-            for (var j = 0; j < ChromosomesCount; j++)
-            {
-                ctmp += Convert.ToInt32(bits[j]) * Math.Pow(2, j);
-            }
-            
+            for (var j = 0; j < ChromosomesCount; j++) ctmp += Convert.ToInt32(bits[j]) * Math.Pow(2, j);
+
             var value = MinValue + ctmp / (Math.Pow(2, ChromosomesCount) - 1) * ValueRange;
 
             representation.Add(bits, value);

@@ -3,7 +3,7 @@ namespace GeneticAlgorithm.Individual;
 public class Individual
 {
     public double Fitness;
-    
+
     public Individual(Individual other)
     {
         Fitness = other.Fitness;

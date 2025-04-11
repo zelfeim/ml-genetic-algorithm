@@ -2,7 +2,8 @@ namespace GeneticAlgorithm.Operators;
 
 public static class Mutation
 {
-    public static List<Individual.Individual> Crossover(Individual.Individual firstParent, Individual.Individual secondParent, int cutoff = 0)
+    public static List<Individual.Individual> Crossover(Individual.Individual firstParent,
+        Individual.Individual secondParent, int cutoff = 0)
     {
         if (firstParent.Genotype.Count != secondParent.Genotype.Count)
             throw new Exception("Genotype sizes are not the same!");
@@ -26,11 +27,11 @@ public static class Mutation
 
         return children;
     }
-    
+
     public static Individual.Individual FlipBit(Individual.Individual individual)
     {
         var random = new Random();
-        
+
         var clone = new Individual.Individual(individual);
 
         var bitIndex = random.Next(clone.Genotype.Count - 1);

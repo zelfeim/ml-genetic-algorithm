@@ -17,7 +17,7 @@ var fitness = new FuncFitness(FitnessFunc);
 var selection = new TournamentSelection(tournamentSize, individualCount - 1, SelectBest);
 var mutationFunc = MutatePopulation;
 
-var geneticAlgorithm = new GeneticAlgorithm.GeneticAlgorithm(population, fitness, selection, mutationFunc);
+var geneticAlgorithm = new GeneticAlgorithm.GeneticAlgorithm(population, fitness, selection, mutationFunc, new Dictionary<int, Tuple<double, double>>());
 
 geneticAlgorithm.Execute();
 

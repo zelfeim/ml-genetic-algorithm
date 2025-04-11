@@ -4,22 +4,24 @@ namespace GeneticAlgorithm.Populations;
 
 public class Population
 {
-    public int GenerationsCount;
-    
-    public readonly int ChromosomesCount;
-    public readonly int GeneCount;
+    private readonly int _maxValue;
+    private readonly int _minValue;
 
     private readonly int _populationSize;
-    private readonly int _minValue;
-    private readonly int _maxValue;
-    
-    public List<Individual.Individual> Individuals = [];
-    
-    public readonly Dictionary<List<byte>, double> GenotypeLookupTable;
 
     private readonly Func<List<Individual.Individual>, Individual.Individual> _selectBestFunc;
 
-    public Population(int populationSize, int generationsCount, int chromosomesCount, int geneCount, int minValue, int maxValue, Func<List<Individual.Individual>, Individual.Individual> selectBestFunc)
+    public readonly int ChromosomesCount;
+    public readonly int GeneCount;
+
+    public readonly Dictionary<List<byte>, double> GenotypeLookupTable;
+    public readonly int GenerationsCount;
+    public int CurrentGeneration;
+
+    public List<Individual.Individual> Individuals = [];
+
+    public Population(int populationSize, int generationsCount, int chromosomesCount, int geneCount, int minValue,
+        int maxValue, Func<List<Individual.Individual>, Individual.Individual> selectBestFunc)
     {
         _populationSize = populationSize;
         GenerationsCount = generationsCount;
@@ -49,9 +51,9 @@ public class Population
     public void CreateNewGeneration(List<Individual.Individual> individuals)
     {
         Individuals = individuals.ToList();
-        GenerationsCount--;
+        CurrentGeneration++;
     }
-    
+
     private Dictionary<List<byte>, double> CreateLookupTable()
     {
         var representation = new Dictionary<List<byte>, double>();
@@ -64,11 +66,8 @@ public class Population
 
             var bits = Enumerable.Range(0, ChromosomesCount).Select(b => (byte)((i >> b) & 1)).ToList();
 
-            for (var j = 0; j < ChromosomesCount; j++)
-            {
-                ctmp += Convert.ToInt32(bits[j]) * Math.Pow(2, j);
-            }
-            
+            for (var j = 0; j < ChromosomesCount; j++) ctmp += Convert.ToInt32(bits[j]) * Math.Pow(2, j);
+
             var value = _minValue + ctmp / (Math.Pow(2, ChromosomesCount) - 1) * (_maxValue - _minValue);
 
             representation.Add(bits, value);

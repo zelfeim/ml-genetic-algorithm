@@ -2,5 +2,5 @@ namespace GeneticAlgorithm.Fitness;
 
 public interface IFitness
 {
-    public double Calculate(List<double> arguments);  
+    public double Calculate(List<double> arguments);
 }

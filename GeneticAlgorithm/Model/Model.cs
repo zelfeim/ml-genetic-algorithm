@@ -1,14 +1,8 @@
-using System.Collections;
-
 namespace GeneticAlgorithm.Model;
 
 public class Model
 {
     private Func<Individual.Individual, float> _fitnessFunction;
-    
-    public Model()
-    {
-    }
 
     public List<Parameter> Parameters { get; set; }
 
@@ -22,9 +16,10 @@ public class Model
         foreach (var parameter in Parameters)
         {
             var parameterBits = bits.Skip(genotypeIndex).Take(parameter.ChromosomesCount);
-            
+
             genotypeIndex += parameter.ChromosomesCount;
-            values.Add(parameter.ParameterRepresentation.FirstOrDefault(kvp => kvp.Key.SequenceEqual(parameterBits)).Value);
+            values.Add(parameter.ParameterRepresentation.FirstOrDefault(kvp => kvp.Key.SequenceEqual(parameterBits))
+                .Value);
         }
 
         return values;

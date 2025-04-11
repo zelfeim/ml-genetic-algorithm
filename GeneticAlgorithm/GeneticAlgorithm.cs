@@ -8,30 +8,30 @@ public class GeneticAlgorithm(
     Population population,
     IFitness fitness,
     ISelection selection,
-    Func<List<Individual.Individual>, List<Individual.Individual>> mutatePopulationFunc
-)
+    Func<List<Individual.Individual>, List<Individual.Individual>> mutatePopulationFunc,
+    Dictionary<int, Tuple<double, double>> helperDictionary)
 {
     public void Execute()
     {
         population.CreateInitialGeneration();
         CalculateFitness(population.Individuals);
-        
+
         Run();
     }
 
     private void Run()
     {
-        while (population.GenerationsCount > 0)
+        while (population.CurrentGeneration < population.GenerationsCount)
         {
             var newGeneration = selection.SelectIndividuals(population.Individuals);
-            
+
             newGeneration = mutatePopulationFunc(newGeneration);
 
             var bestOldIndividual = new Individual.Individual(population.GetBestIndividual());
             newGeneration.Add(bestOldIndividual);
-            
-            CalculateFitness(newGeneration); 
-            
+
+            CalculateFitness(newGeneration);
+
             population.CreateNewGeneration(newGeneration);
             WriteBestAndAverageFitness();
         }
@@ -55,8 +55,9 @@ public class GeneticAlgorithm(
         for (var i = 0; i < population.GeneCount; i++)
         {
             var parameterBits = bits.Skip(i * population.GeneCount).Take(population.ChromosomesCount);
-            
-            values.Add(population.GenotypeLookupTable.FirstOrDefault(kvp => kvp.Key.SequenceEqual(parameterBits)).Value);
+
+            values.Add(population.GenotypeLookupTable.FirstOrDefault(kvp => kvp.Key.SequenceEqual(parameterBits))
+                .Value);
         }
 
         return values;
@@ -66,6 +67,8 @@ public class GeneticAlgorithm(
     {
         var best = population.GetBestIndividual().Fitness;
         var average = population.Individuals.Average(individual => individual.Fitness);
+        
+        helperDictionary.Add(population.CurrentGeneration, new Tuple<double, double>(best, average));
 
         Console.WriteLine($"Best fitness: {best}, Average fitness: {average}");
     }

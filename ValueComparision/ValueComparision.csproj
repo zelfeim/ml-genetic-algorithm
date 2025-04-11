@@ -8,12 +8,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GeneticAlgorithm\GeneticAlgorithm.csproj" />
+        <ProjectReference Include="..\GeneticAlgorithm\GeneticAlgorithm.csproj"/>
     </ItemGroup>
-    
+
     <ItemGroup>
         <None Update="values.csv">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> 
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 

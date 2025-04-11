@@ -4,7 +4,7 @@ namespace ValueComparision;
 
 public class ComparisionFitness(Dictionary<double, double> functionValues) : IFitness
 {
-    private Dictionary<double, double> FunctionValues { get; set; } = functionValues;
+    private Dictionary<double, double> FunctionValues { get; } = functionValues;
 
     public double Calculate(List<double> arguments)
     {
