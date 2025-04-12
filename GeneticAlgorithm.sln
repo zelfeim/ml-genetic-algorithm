@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueComparision", "ValueCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MutatedRug", "MutatedRug\MutatedRug.csproj", "{77D45CD6-54B9-4188-9241-D897A53091A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XOR", "XOR\XOR.csproj", "{7F321345-2ABA-4DC1-8290-2034AAB2C2EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{77D45CD6-54B9-4188-9241-D897A53091A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77D45CD6-54B9-4188-9241-D897A53091A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77D45CD6-54B9-4188-9241-D897A53091A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F321345-2ABA-4DC1-8290-2034AAB2C2EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F321345-2ABA-4DC1-8290-2034AAB2C2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F321345-2ABA-4DC1-8290-2034AAB2C2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F321345-2ABA-4DC1-8290-2034AAB2C2EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

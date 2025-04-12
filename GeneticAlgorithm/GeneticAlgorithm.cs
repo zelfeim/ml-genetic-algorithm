@@ -54,7 +54,7 @@ public class GeneticAlgorithm(
 
         for (var i = 0; i < population.GeneCount; i++)
         {
-            var parameterBits = bits.Skip(i * population.GeneCount).Take(population.ChromosomesCount);
+            var parameterBits = bits.Skip(i * population.ChromosomesCount).Take(population.ChromosomesCount);
 
             values.Add(population.GenotypeLookupTable.FirstOrDefault(kvp => kvp.Key.SequenceEqual(parameterBits))
                 .Value);

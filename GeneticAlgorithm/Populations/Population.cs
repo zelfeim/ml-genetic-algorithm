@@ -19,6 +19,7 @@ public class Population
     public int CurrentGeneration;
 
     public List<Individual.Individual> Individuals = [];
+    public List<List<Individual.Individual>> PreviousGenerations = [];
 
     public Population(int populationSize, int generationsCount, int chromosomesCount, int geneCount, int minValue,
         int maxValue, Func<List<Individual.Individual>, Individual.Individual> selectBestFunc)
@@ -45,6 +46,7 @@ public class Population
 
     public void CreateNewGeneration(List<List<byte>> genotypes)
     {
+        PreviousGenerations.Add(Individuals);
         Individuals = genotypes.Select(g => new Individual.Individual(g)).ToList();
     }
 
