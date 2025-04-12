@@ -21,7 +21,7 @@ public class NeuronFitness : IFitness
             var firstNeuronResult = 
                 CalculateNeuron(arguments[0], xorRow.Key.Item1, arguments[1], xorRow.Key.Item2, arguments[2]);
             var secondNeuronResult = 
-                CalculateNeuron(arguments[3], xorRow.Key.Item2, arguments[4], xorRow.Key.Item2, arguments[5]);
+                CalculateNeuron(arguments[3], xorRow.Key.Item1, arguments[4], xorRow.Key.Item2, arguments[5]);
             
             var result = CalculateNeuron(arguments[6], firstNeuronResult, arguments[7], secondNeuronResult, arguments[8]);
             
