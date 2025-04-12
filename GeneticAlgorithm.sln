@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XOR", "XOR\XOR.csproj", "{7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueComparison.GUI", "ValueComparison.GUI\ValueComparison.GUI.csproj", "{E73971B1-BA2B-4C40-B778-D58F03FCF062}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XOR.GUI", "XOR.GUI\XOR.GUI.csproj", "{37DA9540-885C-4631-BAA9-B32EB9F7D9CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{E73971B1-BA2B-4C40-B778-D58F03FCF062}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E73971B1-BA2B-4C40-B778-D58F03FCF062}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E73971B1-BA2B-4C40-B778-D58F03FCF062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37DA9540-885C-4631-BAA9-B32EB9F7D9CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37DA9540-885C-4631-BAA9-B32EB9F7D9CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37DA9540-885C-4631-BAA9-B32EB9F7D9CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37DA9540-885C-4631-BAA9-B32EB9F7D9CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,29 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+        xmlns:viewModels1="clr-namespace:XOR.GUI.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="XOR.GUI.Views.MainWindow"
+        Title="MainWindow">
+
+    <Design.DataContext>
+        <viewModels1:MainWindowViewModel />
+    </Design.DataContext>
+
+    <StackPanel>
+        <StackPanel Spacing="10">
+            <TextBlock>Iterations</TextBlock>
+            <TextBox Text="{Binding Iterations}" />
+            <TextBlock>Individual Count</TextBlock>
+            <TextBox Text="{Binding IndividualCount}" />
+            <TextBlock>Chromosome Count</TextBlock>
+            <TextBox Text="{Binding ChromosomeCount}" />
+            <TextBlock>Tournament Size</TextBlock>
+            <TextBox Text="{Binding TournamentSize}" />
+
+            <Button Command="{Binding RunAlgorithm}">Run Algorithm</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>
