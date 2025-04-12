@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneticAlgorithm", "GeneticAlgorithm\GeneticAlgorithm.csproj", "{2F297FEA-1AAF-4DB3-8D07-30E31DF630F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneticAlgorithm.Tests", "GeneticAlgorithm.Tests\GeneticAlgorithm.Tests.csproj", "{695FC9A1-5A4E-4978-9D43-C3C8A1DE44BA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MutatedRug.GUI", "MutatedRug.GUI\MutatedRug.GUI.csproj", "{E46DD1CB-F8CE-494E-8375-D6DB1FD5A0DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueComparision", "ValueComparision\ValueComparision.csproj", "{65C6BBB1-66B2-464D-9D47-D19BCA6EE0FF}"
@@ -22,10 +20,6 @@ Global
 		{2F297FEA-1AAF-4DB3-8D07-30E31DF630F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F297FEA-1AAF-4DB3-8D07-30E31DF630F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F297FEA-1AAF-4DB3-8D07-30E31DF630F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{695FC9A1-5A4E-4978-9D43-C3C8A1DE44BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{695FC9A1-5A4E-4978-9D43-C3C8A1DE44BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{695FC9A1-5A4E-4978-9D43-C3C8A1DE44BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{695FC9A1-5A4E-4978-9D43-C3C8A1DE44BA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E46DD1CB-F8CE-494E-8375-D6DB1FD5A0DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E46DD1CB-F8CE-494E-8375-D6DB1FD5A0DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E46DD1CB-F8CE-494E-8375-D6DB1FD5A0DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
