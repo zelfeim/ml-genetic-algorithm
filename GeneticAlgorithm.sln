@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MutatedRug", "MutatedRug\Mu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XOR", "XOR\XOR.csproj", "{7F321345-2ABA-4DC1-8290-2034AAB2C2EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueComparison.GUI", "ValueComparison.GUI\ValueComparison.GUI.csproj", "{E73971B1-BA2B-4C40-B778-D58F03FCF062}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{7F321345-2ABA-4DC1-8290-2034AAB2C2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F321345-2ABA-4DC1-8290-2034AAB2C2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F321345-2ABA-4DC1-8290-2034AAB2C2EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E73971B1-BA2B-4C40-B778-D58F03FCF062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E73971B1-BA2B-4C40-B778-D58F03FCF062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E73971B1-BA2B-4C40-B778-D58F03FCF062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E73971B1-BA2B-4C40-B778-D58F03FCF062}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
