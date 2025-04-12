@@ -1,6 +1,6 @@
 using GeneticAlgorithm.Fitness;
 
-namespace ValueComparision;
+namespace ValueComparison;
 
 public class ComparisionFitness(Dictionary<double, double> functionValues) : IFitness
 {

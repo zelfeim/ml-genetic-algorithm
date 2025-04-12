@@ -3,9 +3,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:avalonia="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
-        xmlns:viewModels="clr-namespace:MutatedRug.ViewModels"
+        xmlns:viewModels="clr-namespace:MutatedRug.GUI.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="MutatedRug.Views.GraphWindow"
+        x:Class="MutatedRug.GUI.Views.GraphWindow"
         Title="GraphWindow">
     
         <Window.DataContext>
@@ -14,8 +14,6 @@
     
         <avalonia:CartesianChart
             Series="{Binding Series}"
-            XAxes="{Binding XAxes}"
-            YAxes="{Binding YAxes}"
             LegendPosition="Left"
             LegendTextSize="16">
         </avalonia:CartesianChart>

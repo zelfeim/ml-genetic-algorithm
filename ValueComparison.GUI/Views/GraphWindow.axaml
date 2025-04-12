@@ -5,8 +5,7 @@
         xmlns:avalonia="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
         xmlns:viewModels1="clr-namespace:ValueComparison.GUI.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="ValueComparison.GUI.Views.GraphWindow"
-        Title="GraphWindow">
+        x:Class="ValueComparison.GUI.Views.GraphWindow" >
     
         <Window.DataContext>
             <viewModels1:GraphViewModel/>   
@@ -14,8 +13,6 @@
     
         <avalonia:CartesianChart
             Series="{Binding Series}"
-            XAxes="{Binding XAxes}"
-            YAxes="{Binding YAxes}"
             LegendPosition="Left"
             LegendTextSize="16">
         </avalonia:CartesianChart>

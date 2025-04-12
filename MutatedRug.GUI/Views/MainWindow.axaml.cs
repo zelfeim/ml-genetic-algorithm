@@ -1,7 +1,6 @@
 using Avalonia.Controls;
-using Avalonia.Interactivity;
 
-namespace MutatedRug.Views;
+namespace MutatedRug.GUI.Views;
 
 public partial class MainWindow : Window
 {

@@ -10,10 +10,6 @@ namespace XOR.GUI.ViewModels;
 
 public partial class MainWindowViewModel : ObservableValidator
 {
-    private const int MinParameterValue = -10;
-    private const int MaxParameterValue = 10;
-    private const int ParameterCount = 9;
-
     [ObservableProperty]
     [Required]
     private int _chromosomeCount = 4;
@@ -32,28 +28,14 @@ public partial class MainWindowViewModel : ObservableValidator
 
     public void RunAlgorithm()
     {
-        var population = new Population(IndividualCount, Iterations, ChromosomeCount, ParameterCount, MinParameterValue, MaxParameterValue, SelectBest);
-        var fitness = new NeuronFitness();
-        var selection = new TournamentSelection(TournamentSize, IndividualCount - 1, SelectBest);
-        var mutationFunc = MutatePopulation;
+        var solution =
+            new Solution(ChromosomeCount, Iterations, IndividualCount, TournamentSize);
+        solution.Run();
 
-        var geneticAlgorithm = new GeneticAlgorithm.GeneticAlgorithm(population, fitness, selection, mutationFunc, _helperDictionary);
-
-        geneticAlgorithm.Execute();
-
-        var window = new GraphWindow();
-        window.Show();
+        var graphWindow = new GraphWindow()
+        {
+            DataContext = new GraphViewModel(solution.HelperDictionary),
+        };
+        graphWindow.Show();
     }
-
-    List<Individual> MutatePopulation(List<Individual> individuals)
-    {
-        return individuals.Select(Mutation.FlipBit).ToList();
-    }
-
-    Individual SelectBest(List<Individual> individuals)
-    {
-        return individuals.MinBy(individual => individual.Fitness);
-    }
-    
-    public static Dictionary<int, Tuple<double, double>> _helperDictionary = new();
 }

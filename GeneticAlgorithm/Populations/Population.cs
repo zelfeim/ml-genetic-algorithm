@@ -11,8 +11,8 @@ public class Population
 
     private readonly Func<List<Individual.Individual>, Individual.Individual> _selectBestFunc;
 
-    public readonly int ChromosomesCount;
     public readonly int GeneCount;
+    public readonly int ChromosomesCount;
 
     public readonly Dictionary<List<byte>, double> GenotypeLookupTable;
     public readonly int GenerationsCount;

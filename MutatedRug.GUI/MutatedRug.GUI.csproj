@@ -5,11 +5,11 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>MutatedRug</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\GeneticAlgorithm\GeneticAlgorithm.csproj"/>
+        <ProjectReference Include="..\MutatedRug\MutatedRug.csproj" />
     </ItemGroup>
 
     <ItemGroup>

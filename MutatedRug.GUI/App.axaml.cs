@@ -1,11 +1,10 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using MutatedRug;
-using MutatedRug.ViewModels;
-using MutatedRug.Views;
+using MutatedRug.GUI.ViewModels;
+using MutatedRug.GUI.Views;
 
-namespace MutatedRug;
+namespace MutatedRug.GUI;
 
 public partial class App : Application
 {

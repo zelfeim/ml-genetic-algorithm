@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace MutatedRug.Views;
+namespace MutatedRug.GUI.Views;
 
 public partial class GraphWindow : Window
 {

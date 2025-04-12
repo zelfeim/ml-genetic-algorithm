@@ -14,8 +14,6 @@
     
         <avalonia:CartesianChart
             Series="{Binding Series}"
-            XAxes="{Binding XAxes}"
-            YAxes="{Binding YAxes}"
             LegendPosition="Left"
             LegendTextSize="16">
         </avalonia:CartesianChart>

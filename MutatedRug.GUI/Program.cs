@@ -1,5 +1,5 @@
 ﻿using Avalonia;
-using MutatedRug;
+using MutatedRug.GUI;
 
 class Program
 {
