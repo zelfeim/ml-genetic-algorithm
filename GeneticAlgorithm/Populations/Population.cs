@@ -44,14 +44,9 @@ public class Population
         }
     }
 
-    public void CreateNewGeneration(List<List<byte>> genotypes)
-    {
-        PreviousGenerations.Add(Individuals);
-        Individuals = genotypes.Select(g => new Individual.Individual(g)).ToList();
-    }
-
     public void CreateNewGeneration(List<Individual.Individual> individuals)
     {
+        PreviousGenerations.Add(Individuals);
         Individuals = individuals.ToList();
         CurrentGeneration++;
     }
